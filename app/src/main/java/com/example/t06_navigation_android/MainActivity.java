@@ -7,10 +7,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -19,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigation;
     private SwitchCompat switchCompat;
     private DrawerLayout drawerLayout;
+    private String urlPeticion;
 
 
     @Override
@@ -27,6 +37,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instancias();
         acciones();
+        peticionInicial();
+    }
+
+    private void peticionInicial() {
+        JsonObjectRequest peticionJson= new JsonObjectRequest(Request.Method.GET, urlPeticion, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.v("test",response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.v("test","error en la conexion");
+            }
+        });
+        Volley.newRequestQueue(getApplicationContext()).add(peticionJson);
     }
 
     private void acciones() {
@@ -53,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void instancias() {
         toolbar= findViewById(R.id.toolbar);
+        urlPeticion= "https://www.thesportsdb.com/api/v1/json/1/all_leagues.php";
         drawerLayout= findViewById(R.id.drawer);
         navigation = findViewById(R.id.navigation);
         switchCompat = (SwitchCompat) navigation.getMenu().findItem(R.id.switchNav).getActionView();
