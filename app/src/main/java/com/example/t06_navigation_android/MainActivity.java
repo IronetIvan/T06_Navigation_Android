@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.ligaEsp:
                         textView.setText("Española");
+
                         break;
                     case R.id.ligaAlemana:
                         textView.setText("Alemana");
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                         textView.setText("Inglesa");
                         break;
                 }
+                drawerLayout.closeDrawers();
                 return false;
             }
         });
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void instancias() {
         toolbar= findViewById(R.id.toolbar);
+        drawerLayout= findViewById(R.id.drawer);
         navigation = findViewById(R.id.navigation);
         switchCompat = (SwitchCompat) navigation.getMenu().findItem(R.id.switchNav).getActionView();
 
