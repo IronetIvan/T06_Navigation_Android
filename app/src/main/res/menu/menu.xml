@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/nav_competiciones"
+        android:icon="@android:drawable/alert_light_frame"
+        android:title="Competiciones" />
+
+    <item android:title="Ligas">
+
+        <menu>
+            <item
+                android:icon="@android:drawable/btn_star"
+                android:title="Española"
+                android:id="@+id/ligaEsp"/>
+            <item
+                android:icon="@android:drawable/arrow_up_float"
+                android:title="Inglesa"
+                android:id="@+id/ligaIng"/>
+            <item
+                android:icon="@android:drawable/stat_sys_warning"
+                android:title="Alemania"
+                android:id="@+id/ligaAlemana"/>
+
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/switchNav"
+        android:title="Activar busqeuda"
+        app:actionViewClass="androidx.appcompat.widget.SwitchCompat" />
+
+</menu>
